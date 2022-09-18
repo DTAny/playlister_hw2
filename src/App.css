@@ -17,7 +17,7 @@ body {
   background-color: var(--swatch-foundation);
 }
 
-#root {
+#root-in {
   background-color: var(--swatch-primary);
   font-family: serif;
   position: absolute;
@@ -135,10 +135,8 @@ body {
   font-size:18pt;
 }
 
-.playlister-button, .playlister-button-disabled {
-  font-size:36pt;
-  border-width: 0px;
-  float:left;
+.playlister-button {
+  float:right;
   color: black;
   cursor: pointer;
 }
@@ -154,9 +152,7 @@ body {
 }
 
 .playlister-song, .playlister-song-dragged-to { 
-  display:flex;
-  align-items: center;
-  font-size: 18pt;
+  font-size: 20pt;
   margin: 10px;
   padding: 20px;
   border-radius: 25px;
