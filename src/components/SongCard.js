@@ -58,6 +58,11 @@ export default class SongCard extends React.Component {
         let num = this.getItemNum();
         this.props.removeSongCallback({song: song, index: num - 1});
     }
+    handleEdit = () => {
+        const {song} = this.props;
+        let num = this.getItemNum();
+        this.props.editSongCallback({song: song, index: num - 1});
+    }
 
     getItemNum = () => {
         return this.props.id.substring("playlist-song-".length);
@@ -81,6 +86,7 @@ export default class SongCard extends React.Component {
                 onDragLeave={this.handleDragLeave}
                 onDrop={this.handleDrop}
                 draggable="true"
+                onDoubleClick={this.handleEdit}
             >
                 {num}.
                 <a href={"https://youtu.be/" + song.youTubeId}>

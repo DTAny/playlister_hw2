@@ -15,7 +15,7 @@ export default class RemoveSongModal extends Component {
                         <div className="modal-center">
                             <div className="modal-center-content">
                                 Are you sure you wish to permanently remove
-                                <span> {songIndexPair == null ? '' : songIndexPair.song.title} </span>
+                                <span> {songIndexPair? songIndexPair.song.title : ''} </span>
                                 from the playlist?
                             </div>
                         </div>
