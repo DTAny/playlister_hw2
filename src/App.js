@@ -34,6 +34,8 @@ class App extends React.Component {
         // THIS WILL TALK TO LOCAL STORAGE
         this.db = new DBManager();
 
+        this.isModaling = false;
+
         // GET THE SESSION DATA FROM OUR DATA MANAGER
         let loadedSessionData = this.db.queryGetSessionData();
 
@@ -43,6 +45,23 @@ class App extends React.Component {
             listKeyPairMarkedForDeletion : null,
             currentList : null,
             sessionData : loadedSessionData
+        }
+    }
+    componentDidMount() {
+        window.addEventListener("keydown", this.handleKeyPress);
+    }
+    componentWillUnmount() {
+        window.removeEventListener("keydown", this.handleKeyPress);
+    }
+    handleKeyPress = (e) => {
+        if (!this.isModaling){
+            if (e.ctrlKey && e.code === "KeyZ"){
+                this.undo()
+
+            }
+            if (e.ctrlKey && e.code === "KeyY"){
+                this.redo()
+            }
         }
     }
     sortKeyNamePairsByName = (keyNamePairs) => {
@@ -271,12 +290,14 @@ class App extends React.Component {
     }
     // THIS FUNCTION SHOWS THE MODAL FOR PROMPTING THE USER
     // TO SEE IF THEY REALLY WANT TO DELETE THE LIST
-    showDeleteListModal() {
+    showDeleteListModal = () => {
+        this.isModaling = true;
         let modal = document.getElementById("delete-list-modal");
         modal.classList.add("is-visible");
     }
     // THIS FUNCTION IS FOR HIDING THE MODAL
-    hideDeleteListModal() {
+    hideDeleteListModal = () => {
+        this.isModaling = false;
         let modal = document.getElementById("delete-list-modal");
         modal.classList.remove("is-visible");
     }
@@ -299,11 +320,13 @@ class App extends React.Component {
             songIndexPairMarked : songPair
         }, this.showRemoveSongModal)
     }
-    showRemoveSongModal(){
+    showRemoveSongModal = () => {
+        this.isModaling = true;
         let modal = document.getElementById("remove-song-modal");
         modal.classList.add("is-visible");
     }
-    hideRemoveSongModal() {
+    hideRemoveSongModal = () => {
+        this.isModaling = false;
         let modal = document.getElementById("remove-song-modal");
         modal.classList.remove("is-visible");
     }
@@ -342,11 +365,13 @@ class App extends React.Component {
         let transaction = new EditSong_Transaction(this, index, newSong, oldSong);
         this.tps.addTransaction(transaction);
     }
-    hideEditSongModal() {
+    hideEditSongModal = () => {
+        this.isModaling = false;
         let modal = document.getElementById("edit-song-modal");
         modal.classList.remove("is-visible");
     }
-    showEditSongModal() {
+    showEditSongModal = () => {
+        this.isModaling = true;
         let songIndexPair = this.state.songIndexPairMarked;
         let title = '';
         let artist = '';
