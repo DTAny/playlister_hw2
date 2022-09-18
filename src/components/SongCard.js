@@ -77,11 +77,10 @@ export default class SongCard extends React.Component {
                 onDrop={this.handleDrop}
                 draggable="true"
             >
-                <span>{num}.
-                    <a href={"https://youtu.be/" + song.youTubeId}>
-                        {song.title} by {song.artist}
-                    </a>
-                </span>
+                {num}.
+                <a href={"https://youtu.be/" + song.youTubeId}>
+                    {song.title} by {song.artist}
+                </a>
                 <input
                     type="button" 
                     className="playlister-button"

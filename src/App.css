@@ -19,7 +19,7 @@ body {
 
 #root-in {
   background-color: var(--swatch-primary);
-  font-family: serif;
+  font-family: "Tangerine", serif;
   position: absolute;
   width: 80%;
   left: 10%;
@@ -109,7 +109,7 @@ body {
 }
 
 .list-card, .selected-list-card, .unselected-list-card {
-  font-size: 18pt;
+  font-size: 32pt;
   margin: 10px;
   padding: 20px;
   border-radius: 25px;
@@ -132,7 +132,7 @@ body {
 
 .list-card-button {
   float:right;
-  font-size:18pt;
+  font-size:24pt;
 }
 
 .playlister-button {
@@ -152,7 +152,7 @@ body {
 }
 
 .playlister-song, .playlister-song-dragged-to { 
-  font-size: 20pt;
+  font-size: 32pt;
   margin: 10px;
   padding: 20px;
   border-radius: 25px;
@@ -166,7 +166,7 @@ body {
 }
 
 input {
-  font-size:20pt;
+  font-size:24pt;
 }
 
 
@@ -399,4 +399,9 @@ span {
   100% {
     transform: rotate(0deg);
   }
+}
+
+@font-face {
+  font-family: "Tangerine";
+  src: url("./fonts/Tangerine-Regular.ttf");
 }
