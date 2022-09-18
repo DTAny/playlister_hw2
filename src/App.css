@@ -169,6 +169,11 @@ input {
   font-size:24pt;
 }
 
+.disabled {
+  color: lightgray;
+  background-color: transparent;
+}
+
 
 /* THIS STYLE SHEET MANAGES STYLE FOR OUR MODAL, i.e. DIALOG BOX */
 
