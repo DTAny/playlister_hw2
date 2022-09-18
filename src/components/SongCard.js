@@ -53,6 +53,11 @@ export default class SongCard extends React.Component {
         // ASK THE MODEL TO MOVE THE DATA
         this.props.moveCallback(sourceId, targetId);
     }
+    handleRemove = () => {
+        const {song} = this.props;
+        let num = this.getItemNum();
+        this.props.removeSongCallback({song: song, index: num - 1});
+    }
 
     getItemNum = () => {
         return this.props.id.substring("playlist-song-".length);
@@ -85,6 +90,7 @@ export default class SongCard extends React.Component {
                     type="button" 
                     className="playlister-button"
                     value="X"
+                    onClick={this.handleRemove}
                 />
             </div>
         )
