@@ -8,6 +8,7 @@ import jsTPS from './common/jsTPS.js';
 // OUR TRANSACTIONS
 import MoveSong_Transaction from './transactions/MoveSong_Transaction.js';
 import RmSong_Transaction from './transactions/RmSong_Transaction';
+import AddSong_Transaction from './transactions/AddSong_Transaction';
 
 // THESE REACT COMPONENTS ARE MODALS
 import DeleteListModal from './components/DeleteListModal.js';
@@ -309,6 +310,18 @@ class App extends React.Component {
         list.songs.splice(index, 0, song);
         this.setStateWithUpdatedList(list);
     }
+    addNewSong() {
+        let list = this.state.currentList;
+        if (list != null){
+            let newSong = {title: "Untitled", artist: "Unknown", youTubeId: "dQw4w9WgXcQ"};
+            list.songs.push(newSong);
+            this.setStateWithUpdatedList(list);
+        }
+    }
+    addAddNewSongTransaction = () => {
+        let transaction = new AddSong_Transaction(this);
+        this.tps.addTransaction(transaction);
+    }
 
     render() {
         let canAddSong = this.state.currentList !== null;
@@ -336,6 +349,7 @@ class App extends React.Component {
                     undoCallback={this.undo}
                     redoCallback={this.redo}
                     closeCallback={this.closeCurrentList}
+                    addSongCallback={this.addAddNewSongTransaction}
                 />
                 <PlaylistCards
                     currentList={this.state.currentList}
